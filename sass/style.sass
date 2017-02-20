@@ -1,0 +1,31 @@
+@import 'partials/reset'
+@import 'modules/mixins'
+
+html
+    font-size: 5vw
+    font-family: Arial, sans-serif
+
+// header
+$h_bgc: lighten(black, 25%)
+$h_c: white
+$h_a_c: white
+$h_a_h_c: yellow
+
+// main
+$m_bgc: lighten(#0044ff, 40%)
+$post_bgc: rgba(255,255,255,.5)
+$caption_bgc: rgba(255,255,255,.5)
+
+// footer
+$f_bgc: lighten(black, 25%)
+
+// breakpoints
+$mobile: 500px
+$tablet: 1000px
+
+@media screen and (min-width: $mobile)
+    font-size: 16px
+
+@import 'partials/header'
+@import 'partials/main'
+@import 'partials/footer'

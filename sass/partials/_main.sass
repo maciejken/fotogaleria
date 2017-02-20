@@ -1,0 +1,40 @@
+main
+    section
+        background-image: url('images/1.jpg')
+        padding: 1rem
+    .container
+        background-color: $m_bgc
+        @include display(flex)
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        h2
+            text-align: center
+            font-size: 1.5rem
+
+        .post
+            padding: 0.75rem
+            background-color: $post_bgc
+            margin: 1rem 0 0 0
+            border-radius: 1rem
+
+        figure
+            position: relative
+
+        img
+            border-radius: 0.5rem
+
+        figcaption
+            background-color: $caption_bgc
+            position: absolute
+            bottom: 1rem
+            padding: 0.5rem
+            width: 100%
+            font-family: Arial, sans-serif
+
+    aside
+        display: none
+
+@media screen and (min-width: $mobile)
+    flex-direction: row

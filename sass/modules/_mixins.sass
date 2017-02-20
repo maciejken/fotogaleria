@@ -1,0 +1,23 @@
+@mixin placeholder
+    &::-webkit-input-placeholder
+        @content
+    &:-moz-placeholder
+        @content
+    &::-moz-placeholder
+        @content
+    &:-ms-input-placeholder
+        @content
+
+@mixin unselectable
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    -o-user-select: none
+    user-select: none
+
+@mixin display($display)
+    display: -webkit-$display
+    display: -moz-$display
+    display: -ms-$display
+    display: -o-$display
+    display: $display

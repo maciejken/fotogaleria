@@ -1,0 +1,6 @@
+node_modules
+.sass-cache
+gulpfile
+lib
+package.json
+images
