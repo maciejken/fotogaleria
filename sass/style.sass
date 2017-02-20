@@ -9,12 +9,12 @@ html
 $h_bgc: lighten(black, 25%)
 $h_c: white
 $h_a_c: white
-$h_a_h_c: yellow
+$h_a_h_c: lighten(#0044ff, 25%)
 
 // main
 $m_bgc: lighten(#0044ff, 40%)
 $post_bgc: rgba(255,255,255,.5)
-$caption_bgc: rgba(255,255,255,.5)
+$caption_bgc: rgba(255,255,255,.75)
 
 // footer
 $f_bgc: lighten(black, 25%)
@@ -24,7 +24,8 @@ $mobile: 500px
 $tablet: 1000px
 
 @media screen and (min-width: $mobile)
-    font-size: 16px
+    html
+        font-size: 16px
 
 @import 'partials/header'
 @import 'partials/main'
