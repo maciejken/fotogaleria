@@ -1,13 +1,23 @@
 $ ->
-    figures = $('.post')
+    figures = $('figure')
+    splash = $('.splash')
+    teaser = $('.teaser')
+    teaser.on 'click', ->
+        false
+    thumbnail = splash.find 'img'
     figures.on 'click', ->
-        $(@).find 'figcaption'
-        .fadeToggle(500)
+        img = $(@).find 'img'
+        thumbnail.attr('src', img.attr('src'))
+        splash.addClass('fullscreen')
+        splash.on 'click', ->
+            $(@).removeClass('fullscreen')
 
 
     figures.on 'mousemove', (e) ->
         offset = $(@).offset()
-        x = -(e.clientX - @offsetLeft + offset.left)/20
-        y = -(e.clientY - @offsetTop + offset.top)/20
+        x = -(e.pageX - offset.left)/20
+        y = -(e.pageY - offset.top)/20
 
-        $(@).find('figure').css('background-position', x + 'px ' + y + 'px')
+        img = $(@).find 'img'
+        img.css('left', x + 'px ')
+        img.css('top', y + 'px')

@@ -1,31 +1,45 @@
 @import 'partials/reset'
 @import 'modules/mixins'
-
-html
-    font-size: 5vw
-    font-family: Arial, sans-serif
-
-// header
-$h_bgc: lighten(black, 25%)
-$h_c: white
-$h_a_c: white
-$h_a_h_c: lighten(#0044ff, 25%)
-
-// main
-$m_bgc: lighten(#0044ff, 40%)
-$post_bgc: rgba(255,255,255,.5)
-$caption_bgc: rgba(255,255,255,.75)
-
-// footer
-$f_bgc: lighten(black, 25%)
+@import 'vendor/simple-line-icons'
 
 // breakpoints
 $mobile: 500px
 $tablet: 1000px
 
+html
+    font-size: 4vw
+    font-family: Arial, sans-serif
+
+
+header, main, footer
+    @include display(flex)
+    flex-direction: column
+    align-items: center
+
+    .container
+        width: 100%
+        @include display(flex)
+        justify-content: center
+        align-items: center
+        flex-direction: column
+
+    a
+        color: #fff
+        text-decoration: none
+
+        &:hover
+            color: #80a2ff
+
 @media screen and (min-width: $mobile)
     html
         font-size: 16px
+
+@media screen and (min-width: $tablet)
+    header, main, footer
+        .container
+            width: $tablet
+            flex-direction: row
+
 
 @import 'partials/header'
 @import 'partials/main'
