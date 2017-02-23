@@ -6,9 +6,6 @@
 $mobile: 500px
 $tablet: 1000px
 
-.flex
-    @include display(flex)
-    flex-direction: row
 
 html
     font-size: 4vw
@@ -25,9 +22,10 @@ header, nav, main, footer
         @include display(flex)
         width: 100%
 
-a
+a, a[class*=icon]
     color: #fff
     text-decoration: none
+    cursor: pointer
 
     &:hover
         color: #80a2ff

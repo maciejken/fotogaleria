@@ -26,6 +26,7 @@ main
         width: 50vw
         height: 50vw
         overflow: hidden
+        cursor: pointer
 
         img
             position: relative
@@ -49,7 +50,10 @@ main
 
         a[class*=icon]
             font-size: 1.5rem
-            color: #000
+            color: lighten(#000, 40%)
+
+            &:hover
+                color: lighten(#000, 10%)
 
         nav
             @include display(flex)
@@ -60,6 +64,9 @@ main
             position: absolute
             top: 0
             width: 100%
+
+        img
+            cursor: pointer
 
         figcaption
             padding: 1rem
@@ -84,7 +91,7 @@ main
                 color: #fff
 
                 &:hover
-                    background-color: lighten(#000, 20%)
+                    background-color: lighten(#000, 10%)
 
     .fullscreen
         @include display(flex)
