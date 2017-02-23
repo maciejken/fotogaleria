@@ -1,46 +1,49 @@
 @import 'partials/reset'
 @import 'modules/mixins'
-@import 'vendor/simple-line-icons'
+@import 'partials/simple-line-icons'
 
 // breakpoints
 $mobile: 500px
 $tablet: 1000px
 
+.flex
+    @include display(flex)
+    flex-direction: row
+
 html
     font-size: 4vw
     font-family: Arial, sans-serif
 
+    body
+        background-color: lighten(#000, 10%)
 
-header, main, footer
+header, nav, main, footer
     @include display(flex)
-    flex-direction: column
-    align-items: center
+    justify-content: center
 
     .container
-        width: 100%
         @include display(flex)
-        justify-content: center
-        align-items: center
-        flex-direction: column
+        width: 100%
 
-    a
-        color: #fff
-        text-decoration: none
+a
+    color: #fff
+    text-decoration: none
 
-        &:hover
-            color: #80a2ff
+    &:hover
+        color: #80a2ff
 
 @media screen and (min-width: $mobile)
     html
         font-size: 16px
 
 @media screen and (min-width: $tablet)
-    header, main, footer
+    header, nav, main, footer
         .container
             width: $tablet
             flex-direction: row
 
 
 @import 'partials/header'
+@import 'partials/nav'
 @import 'partials/main'
 @import 'partials/footer'
