@@ -26,16 +26,21 @@ $ ->
     # show image on fullscreen
     figures.on 'click', ->
         img = $(@).find 'img'
-        figWidth = $(@).outerWidth()
         offset = $(@).offset()
-        imgWidth = $(@).find('img').css('width')
         popup.addClass('fullscreen')
         popupImg.attr('src', img.attr('src'))
-        popupFig.css('left', offset.left).css('top', offset.top)
-        .css('width', figWidth).css('height', figWidth)
-        popupImg.css('width', imgWidth)
+        popupFig.css('left', offset.left).css('top', offset.top - window.scrollTop)
+        .css('width', $(@).outerWidth()).css('height', $(@).outerWidth())
+        popupImg.css('width', img.css('width')).css('margin', img.css('margin'))
         popup.animate
             opacity: 1
+            500
+        popupFig.animate
+            width: img.outerWidth()
+            height: img.outerHeight()
+            500
+        popupImg.animate
+            margin: 0
             500
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
