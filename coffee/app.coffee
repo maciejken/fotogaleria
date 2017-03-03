@@ -1,6 +1,7 @@
 $ ->
 
     # show/hide nav menu bar
+    body = $('body')
     header = $('header')
     menuBtn = header.find 'a'
     navMenu = $('nav.menu')
@@ -25,15 +26,32 @@ $ ->
     # show image on fullscreen
     figures.on 'click', ->
         img = $(@).find 'img'
-        popupImg.attr('src', img.attr('src'))
+        figWidth = $(@).outerWidth()
+        offset = $(@).offset()
+        imgWidth = $(@).find('img').css('width')
         popup.addClass('fullscreen')
+        popupImg.attr('src', img.attr('src'))
+        popupFig.css('left', offset.left).css('top', offset.top)
+        .css('width', figWidth).css('height', figWidth)
+        popupImg.css('width', imgWidth)
+        popup.animate
+            opacity: 1
+            500
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
+            # popupFig.removeClass('big')
             caption.hide()
+            $(@).css('opacity', 0)
             showBtn.removeClass 'icon-arrow-up'
             popupNav.hide()
 
+        # dodać efekt powiększania połączonego z
+        # przemieszczaniem klikniętego obrazka
+        # tak jak w osX
+
     popup = $('.popup')
+
+    popupFig = popup.find 'figure'
     popupImg = popup.find 'img'
     popupNav = popup.find 'nav'
     popupNav.hide()

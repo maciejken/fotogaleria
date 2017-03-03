@@ -23,12 +23,12 @@
   });
 
   gulp.task('browser-sync', function() {
-    return browserSync.init({
+    browserSync.init({
       server: '.',
       port: 8080,
-      open: false,
-      files: [path + '*.html', path + 'style.css', path + 'js/app.js']
+      open: false
     });
+    return gulp.watch([path + '*.html', path + 'style.css', path + 'js/app.js'], reload);
   });
 
   gulp.task('sass', function() {

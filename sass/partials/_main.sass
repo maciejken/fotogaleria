@@ -3,7 +3,7 @@ main
     // position: relative
     // żeby tło stało w miejscu (main::after)
 
-    section, .teaser, .fullscreen, .desc
+    section, .popup, .fullscreen, .desc
         @include display(flex)
         flex-wrap: wrap
 
@@ -41,12 +41,19 @@ main
 
     .popup
         display: none
+        opacity: 0
 
         figure
-            position: relative
+            position: absolute
             @include display(flex)
             width: 100%
             align-items: flex-start
+            background-color: #fff
+            max-width: none
+        //
+        // figure.big
+        //     width: 100vw
+        //     transition: 1s width
 
         a[class*=icon]
             font-size: 1.5rem
@@ -67,6 +74,7 @@ main
 
         img
             cursor: pointer
+            max-width: none
 
         figcaption
             padding: 1rem
@@ -132,7 +140,9 @@ main
             display: none
 
             figure
-                width: 90vw
+                // width: 90vw
+                height: auto
+                overflow: hidden
 
             a[class*=icon]
                 font-size: 2rem
@@ -155,12 +165,15 @@ main
 
             .popup
                 display: none
+                opacity: 0
 
-                figure
-                    width: 90vw
+                // figure
+                //     width: 90vw
+                //
+                // figure.big
+                //     width: 90vw
+                //     transition: 1s width
 
-                // a[class*=icon]
-                //     font-size: 2rem
 
             .fullscreen
                 @include display(flex)
