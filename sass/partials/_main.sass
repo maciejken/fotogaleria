@@ -42,15 +42,10 @@ main
     .popup
         display: none
         opacity: 0
-
-        // .mainbox
-        //     @include display(flex)
-        //     justify-content: center
-        //     align-items: center
-        //     width: 100%
+        position: relative
 
         figure
-            position: relative
+            position: absolute
             @include display(flex)
             width: 20px
             height: 20px
@@ -78,6 +73,7 @@ main
         img
             opacity: 0
             cursor: pointer
+            max-width: none
 
         figcaption
             padding: 1rem
@@ -141,16 +137,17 @@ main
         .popup
             display: none
 
-            // .mainbox
-            //     width: 90%
-
-            // figure
-            //     width: 20px
-            //     height: 20px
-            //     overflow: hidden
-
             a[class*=icon]
                 font-size: 2rem
+
+            figure
+                position: absolute
+                @include display(flex)
+                width: 20px
+                height: 20px
+                overflow: hidden
+                align-items: flex-start
+                background-color: #fff
 
         .fullscreen
             @include display(flex)
@@ -171,13 +168,6 @@ main
             .popup
                 display: none
                 opacity: 0
-
-                // figure
-                //     width: 90vw
-                //
-                // figure.big
-                //     width: 90vw
-                //     transition: 1s width
 
 
             .fullscreen
