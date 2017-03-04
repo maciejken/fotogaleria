@@ -29,24 +29,40 @@ $ ->
         offset = $(@).offset()
         popup.addClass('fullscreen')
         popupImg.attr('src', img.attr('src'))
-        popupFig.css('left', offset.left).css('top', offset.top - window.scrollTop)
-        .css('width', $(@).outerWidth()).css('height', $(@).outerWidth())
-        popupImg.css('width', img.css('width')).css('margin', img.css('margin'))
         popup.animate
             opacity: 1
             500
+
+        winWidth = window.innerWidth
+        winHeight = window.innerHeight
+        winRatio =  winHeight / winWidth
+        imgRatio = img.outerHeight() / img.outerWidth()
+
+        $('p.width').text(window.innerWidth + ' ' + winWidth)
+
+        if winRatio < imgRatio
+            figWidth = 100*(winRatio/imgRatio) + '%'
+        else
+            figWidth = '100%'
+
         popupFig.animate
-            width: img.outerWidth()
-            height: img.outerHeight()
+            width: figWidth
             500
-        popupImg.animate
-            margin: 0
-            500
+            ->
+                popupFig.animate
+                    height: popupImg.outerHeight()
+                    500
+                    ->
+                        popupImg.animate
+                            opacity: 1
+                            500
+
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
-            # popupFig.removeClass('big')
             caption.hide()
             $(@).css('opacity', 0)
+            popupImg.css('opacity', 0)
+            popupFig.css('width', '20px').css('height', '20px')
             showBtn.removeClass 'icon-arrow-up'
             popupNav.hide()
 

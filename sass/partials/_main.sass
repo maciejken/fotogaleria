@@ -43,17 +43,20 @@ main
         display: none
         opacity: 0
 
+        // .mainbox
+        //     @include display(flex)
+        //     justify-content: center
+        //     align-items: center
+        //     width: 100%
+
         figure
-            position: absolute
+            position: relative
             @include display(flex)
-            width: 100%
+            width: 20px
+            height: 20px
+            overflow: hidden
             align-items: flex-start
             background-color: #fff
-            max-width: none
-        //
-        // figure.big
-        //     width: 100vw
-        //     transition: 1s width
 
         a[class*=icon]
             font-size: 1.5rem
@@ -73,8 +76,8 @@ main
             width: 100%
 
         img
+            opacity: 0
             cursor: pointer
-            max-width: none
 
         figcaption
             padding: 1rem
@@ -138,10 +141,13 @@ main
         .popup
             display: none
 
-            figure
-                // width: 90vw
-                height: auto
-                overflow: hidden
+            // .mainbox
+            //     width: 90%
+
+            // figure
+            //     width: 20px
+            //     height: 20px
+            //     overflow: hidden
 
             a[class*=icon]
                 font-size: 2rem
