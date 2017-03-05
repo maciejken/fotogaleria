@@ -24,6 +24,13 @@ $ ->
         img.css('top', y + 'px')
 
     # show image on fullscreen
+    initImgCSS =
+        maxWidth: 'none'
+        opacity: 0
+
+    popupImgCSS =
+        maxWidth: '100%'
+        width: '100%'
     figures.on 'click', ->
         img = $(@).find 'img'
         offset = @getBoundingClientRect()
@@ -45,9 +52,9 @@ $ ->
         $('p.width').text(window.innerWidth + ' ' + winWidth)
 
         if winRatio < imgRatio
-            figWidth = 100*(winRatio/imgRatio) + '%'
+            figWidth = winWidth*(winRatio/imgRatio)
         else
-            figWidth = '100%'
+            figWidth = winWidth
 
         # popupFig.animate
         #     width: figWidth
@@ -66,27 +73,35 @@ $ ->
             left: window.innerWidth/2 - @offsetWidth/2 - 10
             500
             ->
-                $(@).css('position', 'static').css('top', 'auto').css('left', 'auto')
+                $(@).css
+                    position: 'static'
+                    top: 'auto'
+                    left: 'auto'
                 popupFig.animate
                     width: popupImg.outerWidth()
                     height: popupImg.outerHeight()
                     500
+                    'linear'
                 popupImg.animate
                     margin: 0
                     500
+                    'linear'
                     ->
-                        popupFig.css('position', 'relative')
-                        # popupImg.css('width', '100%')
-                        # popupFig.animate
-                        #     width: figWidth
-                        #     height: figWidth*imgRatio
-                        #     500
+                        popupFig.css
+                            position: 'relative'
+                            width: 'auto'
+                            height: 'auto'
+                        popupImg.css popupImgCSS
+                        popupFig.animate
+                            width: figWidth
+                            height: figWidth*imgRatio
+                            700
 
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
             caption.hide()
             $(@).css('opacity', 0)
-            popupImg.css('opacity', 0)
+            popupImg.css initImgCSS
             popupFig.css('width', '20px').css('height', '20px')
             .css('position', 'absolute')
             showBtn.removeClass 'icon-arrow-up'
