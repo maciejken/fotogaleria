@@ -20,8 +20,9 @@ $ ->
         y = -(e.pageY - offset.top)/20
 
         img = $(@).find 'img'
-        img.css('left', x + 'px ')
-        img.css('top', y + 'px')
+        img.css
+            left: x + 'px'
+            top: y + 'px'
 
     # show image on fullscreen
     initImgCSS =
@@ -39,10 +40,15 @@ $ ->
         popup.animate
             opacity: 1
             500
-        popupFig.css('top', offset.top).css('left', offset.left)
-        .css('width', $(@).width()).css('height', $(@).height())
-        popupImg.css('width', img.width()).css('margin', img.css('margin'))
-        .css('opacity', 1)
+        popupFig.css
+            top: offset.top
+            left: offset.left
+            width: $(@).width()
+            height: $(@).height()
+        popupImg.css
+            width: img.width()
+            margin: img.css('margin')
+            opacity: 1
 
         winWidth = window.innerWidth
         winHeight = window.innerHeight
@@ -68,48 +74,74 @@ $ ->
         #                     opacity: 1
         #                     500
 
+        # popupFig.animate
+        #     top: window.innerHeight/2 - @offsetHeight/2
+        #     left: window.innerWidth/2 - @offsetWidth/2 - 10
+        #     500
+        #     ->
+        #         $(@).css
+        #             position: 'static'
+        #             top: 'auto'
+        #             left: 'auto'
+        #         popupFig.animate
+        #             width: popupImg.outerWidth()
+        #             height: popupImg.outerHeight()
+        #             500
+        #             'linear'
+        #         popupImg.animate
+        #             margin: 0
+        #             500
+        #             'linear'
+        #             ->
+        #                 popupFig.css
+        #                     position: 'relative'
+        #                     width: 'auto'
+        #                     height: 'auto'
+        #                 popupImg.css popupImgCSS
+        #                 popupFig.animate
+        #                     width: figWidth
+        #                     height: figWidth*imgRatio
+        #                     700
+
         popupFig.animate
-            top: window.innerHeight/2 - @offsetHeight/2
-            left: window.innerWidth/2 - @offsetWidth/2 - 10
+            top: window.innerHeight/2 - popupImg.outerHeight()/2
+            left: window.innerWidth/2 - popupImg.outerWidth()/2 - 10
+            width: popupImg.outerWidth()
+            height: popupImg.outerHeight()
             500
+            'linear'
+        # debugger
+        popupImg.animate
+            margin: 0
+            500
+            'linear'
             ->
-                $(@).css
+                popupFig.css
                     position: 'static'
                     top: 'auto'
                     left: 'auto'
+                popupImg.css popupImgCSS
                 popupFig.animate
-                    width: popupImg.outerWidth()
-                    height: popupImg.outerHeight()
-                    500
-                    'linear'
-                popupImg.animate
-                    margin: 0
-                    500
-                    'linear'
+                    width: figWidth
+                    height: figWidth*imgRatio
+                    700
                     ->
                         popupFig.css
                             position: 'relative'
-                            width: 'auto'
-                            height: 'auto'
-                        popupImg.css popupImgCSS
-                        popupFig.animate
-                            width: figWidth
-                            height: figWidth*imgRatio
-                            700
+                            # width: 'auto'
+                            # height: 'auto'
 
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
             caption.hide()
             $(@).css('opacity', 0)
             popupImg.css initImgCSS
-            popupFig.css('width', '20px').css('height', '20px')
-            .css('position', 'absolute')
+            popupFig.css
+                width: '20px'
+                height: '20px'
+                position: 'absolute'
             showBtn.removeClass 'icon-arrow-up'
             popupNav.hide()
-
-        # dodać efekt powiększania połączonego z
-        # przemieszczaniem klikniętego obrazka
-        # tak jak w osX
 
     popup = $('.popup')
 
