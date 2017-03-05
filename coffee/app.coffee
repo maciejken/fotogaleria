@@ -55,7 +55,7 @@ $ ->
         winRatio =  winHeight / winWidth
         imgRatio = img.outerHeight() / img.outerWidth()
 
-        $('p.width').text(window.innerWidth + ' ' + winWidth)
+        # $('p.width').text(window.innerWidth + ' ' + winWidth)
 
         if winRatio < imgRatio
             figWidth = winWidth*(winRatio/imgRatio)
@@ -110,7 +110,6 @@ $ ->
             height: popupImg.outerHeight()
             500
             'linear'
-        # debugger
         popupImg.animate
             margin: 0
             500
@@ -130,6 +129,14 @@ $ ->
                             position: 'relative'
                             # width: 'auto'
                             # height: 'auto'
+
+        $(window).on 'resize', ->
+            winRatio = $(@).innerHeight() / $(@).innerWidth()
+            figWidth = $(@).innerWidth() * (winRatio/imgRatio)
+            console.log figWidth
+            popupFig.css
+                width: figWidth
+                height: 'auto'
 
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
@@ -168,11 +175,12 @@ $ ->
         caption.slideToggle 500
         $(@).toggleClass('icon-arrow-up')
 
-    $(window).on 'resize', ->
-        imgHeight = popupImg.outerHeight()
-        navHeight = popupNav.outerHeight()
-        caption.outerHeight(imgHeight - navHeight)
-        caption.css('top', navHeight)
+        $(window).on 'resize', ->
+            imgHeight = popupImg.outerHeight()
+            navHeight = popupNav.outerHeight()
+            caption.outerHeight(imgHeight - navHeight)
+            caption.css('top', navHeight)
+
 
     popupImg.on 'click', (e) ->
         popupNav.fadeToggle 500
