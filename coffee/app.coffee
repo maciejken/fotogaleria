@@ -29,8 +29,14 @@ $ ->
         maxWidth: 'none'
         opacity: 0
 
+    initFigCSS =
+        position: 'static'
+        top: 'auto'
+        left: 'auto'
+        height: 'auto'
+
     popupImgCSS =
-        maxWidth: '100%'
+        # maxWidth: '100%'
         width: '100%'
     figures.on 'click', ->
         img = $(@).find 'img'
@@ -62,81 +68,36 @@ $ ->
         else
             figWidth = winWidth
 
-        # popupFig.animate
-        #     width: figWidth
-        #     500
-        #     ->
-        #         popupFig.animate
-        #             height: popupImg.outerHeight()
-        #             500
-        #             ->
-        #                 popupImg.animate
-        #                     opacity: 1
-        #                     500
-
-        # popupFig.animate
-        #     top: window.innerHeight/2 - @offsetHeight/2
-        #     left: window.innerWidth/2 - @offsetWidth/2 - 10
-        #     500
-        #     ->
-        #         $(@).css
-        #             position: 'static'
-        #             top: 'auto'
-        #             left: 'auto'
-        #         popupFig.animate
-        #             width: popupImg.outerWidth()
-        #             height: popupImg.outerHeight()
-        #             500
-        #             'linear'
-        #         popupImg.animate
-        #             margin: 0
-        #             500
-        #             'linear'
-        #             ->
-        #                 popupFig.css
-        #                     position: 'relative'
-        #                     width: 'auto'
-        #                     height: 'auto'
-        #                 popupImg.css popupImgCSS
-        #                 popupFig.animate
-        #                     width: figWidth
-        #                     height: figWidth*imgRatio
-        #                     700
-
+        # animacja przesuwania i powiększania klikniętego obrazka
+        minWidth = Math.min(popupImg.outerWidth(), figWidth)
+        minHeight = Math.min(popupImg.outerHeight(), figWidth)
         popupFig.animate
-            top: window.innerHeight/2 - popupImg.outerHeight()/2
-            left: window.innerWidth/2 - popupImg.outerWidth()/2 - 10
-            width: popupImg.outerWidth()
-            height: popupImg.outerHeight()
+            top: window.innerHeight/2 - minHeight/2
+            left: window.innerWidth/2 - minWidth/2
+            width: minWidth
+            height: minHeight
             500
-            'linear'
         popupImg.animate
             margin: 0
             500
-            'linear'
             ->
-                popupFig.css
-                    position: 'static'
-                    top: 'auto'
-                    left: 'auto'
+                # debugger
+                popupFig.css initFigCSS
                 popupImg.css popupImgCSS
                 popupFig.animate
                     width: figWidth
-                    height: figWidth*imgRatio
-                    700
+                    500
                     ->
                         popupFig.css
                             position: 'relative'
-                            # width: 'auto'
-                            # height: 'auto'
+                            # żeby górny pasek i opis były we właściwym miejscu
 
         $(window).on 'resize', ->
             winRatio = $(@).innerHeight() / $(@).innerWidth()
             figWidth = $(@).innerWidth() * (winRatio/imgRatio)
-            console.log figWidth
             popupFig.css
                 width: figWidth
-                height: 'auto'
+                # poprawka responsywności: szerokość obrazka
 
         popup.on 'click', ->
             $(@).removeClass('fullscreen')
@@ -180,6 +141,7 @@ $ ->
             navHeight = popupNav.outerHeight()
             caption.outerHeight(imgHeight - navHeight)
             caption.css('top', navHeight)
+            # poprawka responsywności dla górnej belki i opisu
 
 
     popupImg.on 'click', (e) ->
