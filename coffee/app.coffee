@@ -40,8 +40,10 @@ $ ->
         width: '100%'
     figures.on 'click', ->
         img = $(@).find 'img'
+        caption = $(@).find 'figcaption'
         offset = @getBoundingClientRect()
         popup.addClass('fullscreen')
+        popupFig.append caption.clone()
         popupImg.attr('src', img.attr('src'))
         popup.animate
             opacity: 1
@@ -103,11 +105,13 @@ $ ->
             $(@).removeClass('fullscreen')
             caption.hide()
             $(@).css('opacity', 0)
+            $(@).find('figcaption').remove()
             popupImg.css initImgCSS
             popupFig.css
                 width: '20px'
                 height: '20px'
                 position: 'absolute'
+            popupImg.attr 'src', ''
             showBtn.removeClass 'icon-arrow-up'
             popupNav.hide()
 
@@ -121,7 +125,6 @@ $ ->
         false
     closeBtn = popupNav.find '.icon-close'
     showBtn = popupNav.find '.icon-arrow-down'
-    caption = popup.find 'figcaption'
 
     # exit fullscreen mode
     closeBtn.on 'click', ->
@@ -129,12 +132,16 @@ $ ->
 
     # toggle caption visibility
     showBtn.on 'click', ->
+        caption = popup.find 'figcaption'
         imgHeight = popupImg.outerHeight()
         navHeight = $(@).parent().outerHeight()
         caption.outerHeight(imgHeight - navHeight)
         caption.css('top', navHeight)
         caption.slideToggle 500
         $(@).toggleClass('icon-arrow-up')
+
+        caption.on 'click', (e) ->
+            e.stopImmediatePropagation()
 
         $(window).on 'resize', ->
             imgHeight = popupImg.outerHeight()
@@ -146,7 +153,4 @@ $ ->
 
     popupImg.on 'click', (e) ->
         popupNav.fadeToggle 500
-        e.stopImmediatePropagation()
-
-    caption.on 'click', (e) ->
         e.stopImmediatePropagation()
