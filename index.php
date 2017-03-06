@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fotogaleria</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="node_modules/jquery/dist/jquery.js"></script>
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
+    <script src="<?php bloginfo('template_directory'); ?>/node_modules/jquery/dist/jquery.js"></script>
+    <script src="<?php bloginfo('template_directory'); ?>/js/app.js"></script>
 </head>
 <body>
     <header>
@@ -36,10 +36,10 @@
             <section>
                 <!-- <h2>Tajlandia</h2> -->
                 <figure class="post">
-                    <img src="images/img1.jpg" alt="">
+                    <img src="<?php bloginfo('template_directory'); ?>/images/img1.jpg" alt="">
                 </figure>
                 <figure class="post">
-                    <img src="images/img2.jpg" alt="">
+                    <img src="<?php bloginfo('template_directory'); ?>/images/img2.jpg" alt="">
                 </figure>
                 <figure class="post">
                     <img src="images/img3.jpg" alt="">
