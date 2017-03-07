@@ -107,10 +107,7 @@ $ ->
             $(@).css('opacity', 0)
             $(@).find('figcaption').remove()
             popupImg.css initImgCSS
-            popupFig.css
-                width: '20px'
-                height: '20px'
-                position: 'absolute'
+            popupFig.css 'position', 'absolute'
             popupImg.attr 'src', ''
             showBtn.removeClass 'icon-arrow-up'
             popupNav.hide()

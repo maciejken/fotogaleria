@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fotogaleria</title>
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
-    <script src="<?php bloginfo('template_directory'); ?>/node_modules/jquery/dist/jquery.js"></script>
+    <script src="<?php bloginfo('template_directory'); ?>/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="<?php bloginfo('template_directory'); ?>/js/app.js"></script>
 </head>
 <body>
@@ -18,16 +18,14 @@
     </header>
     <nav class="menu">
         <div class="container">
-            <ul>
-                <li>
-                    <a href="">Info</a>
-                </li>
-                <li>
-                    <a href="">Cennik</a>
-                </li>
-                <li>
-                    <a href="">Kontakt</a>
-                </li>
-            </ul>
+            <?php
+                    $args = array(
+                        'theme_location' => 'primary',
+                        'container' => 'div',
+                        'container_class' => 'social'
+                    );
+                    wp_nav_menu($args);
+                ?>
+            <?php dynamic_sidebar('headbar'); ?>
         </div>
     </nav>

@@ -1,18 +1,48 @@
 footer
     color: white
     background-color: lighten(black, 10%)
-    height: 10rem
     justify-content: center
     align-items: center
 
-    .container
+    .container, .container > div
         @include display(flex)
-        height: 10rem
-        justify-content: center
+        flex-direction: column
+        justify-content: space-around
         align-items: center
 
+    .container > div
+        margin: 1rem 0
+        align-items: center
+
+        h2
+            display: none
+
+    .container > div:first-child
+        width: 100%
+
+        .tagcloud
+            width: 85%
+
+
+
     ul
-        width: 15rem
-        font-size: 2rem
+        font-size: 1rem
         @include display(flex)
-        justify-content: space-between
+        flex-direction: column
+        justify-content: flex-start
+        align-items: center
+
+    #menu-social-media
+        flex-direction: row
+        font-size: 1.5rem
+        width: auto
+
+        li
+            padding: 0 0 0 1rem
+
+@media screen and (min-width: $mobile)
+    footer
+        .container
+            flex-direction: row
+            flex-wrap: wrap
+            align-items: flex-start
