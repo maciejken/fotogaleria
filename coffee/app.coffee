@@ -25,19 +25,6 @@ $ ->
             top: y + 'px'
 
     # show image on fullscreen
-    initImgCSS =
-        maxWidth: 'none'
-        opacity: 0
-
-    initFigCSS =
-        position: 'static'
-        top: 'auto'
-        left: 'auto'
-        height: 'auto'
-
-    popupImgCSS =
-        # maxWidth: '100%'
-        width: '100%'
     figures.on 'click', ->
         img = $(@).find 'img'
         caption = $(@).find 'figcaption'
@@ -70,20 +57,30 @@ $ ->
         else
             figWidth = winWidth
 
+        figHeight = figWidth*imgRatio
+
         # animacja przesuwania i powiększania klikniętego obrazka
         minWidth = Math.min(popupImg.outerWidth(), figWidth)
-        minHeight = Math.min(popupImg.outerHeight(), figWidth)
+        minHeight = Math.min(popupImg.outerHeight(), figHeight)
         popupFig.animate
             top: window.innerHeight/2 - minHeight/2
-            left: window.innerWidth/2 - minWidth/2
+            left: window.innerWidth/2 - minWidth/2 - 10
             width: minWidth
             height: minHeight
             500
         popupImg.animate
             margin: 0
+            width: minWidth
             500
             ->
-                # debugger
+                debugger
+                initFigCSS =
+                    position: 'static'
+                    top: 'auto'
+                    left: 'auto'
+                    height: 'auto'
+                popupImgCSS =
+                    width: '100%'
                 popupFig.css initFigCSS
                 popupImg.css popupImgCSS
                 popupFig.animate
@@ -106,6 +103,8 @@ $ ->
             caption.hide()
             $(@).css('opacity', 0)
             $(@).find('figcaption').remove()
+            initImgCSS =
+                opacity: 0
             popupImg.css initImgCSS
             popupFig.css 'position', 'absolute'
             popupImg.attr 'src', ''
