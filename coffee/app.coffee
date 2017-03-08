@@ -73,7 +73,7 @@ $ ->
             width: minWidth
             500
             ->
-                debugger
+                # debugger
                 initFigCSS =
                     position: 'static'
                     top: 'auto'
@@ -96,6 +96,8 @@ $ ->
             figWidth = $(@).innerWidth() * (winRatio/imgRatio)
             popupFig.css
                 width: figWidth
+            caption.outerWidth(figWidth)
+            console.log caption.outerWidth()
                 # poprawka responsywności: szerokość obrazka
 
         popup.on 'click', ->

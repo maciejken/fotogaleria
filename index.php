@@ -9,7 +9,24 @@
             <figure class="post">
                 <?php the_post_thumbnail(); ?>
                 <figcaption class="desc">
-                    <p><?php the_content(); ?></p>
+                    <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <p><?php the_tags(); ?></p>
+                    <p><?php the_date(); ?></p>
+                    <p>Dodał(a): <?php the_author(); ?></p>
+                    <div class="comments">
+                        <?php
+                            $id = the_id();
+                            $args = array(
+                                'post_id' => $id
+                                );
+                            $comments = get_comments($args);
+                            foreach($comments as $comment) :
+                                echo($comment->comment_content);
+                                echo($comment->comment_date);
+                            	echo($comment->comment_author);
+                            endforeach;
+                        ?>
+                    </div>
                 </figcaption>
             </figure>
             <?php
