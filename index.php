@@ -13,19 +13,19 @@
                     <p><?php the_tags(); ?></p>
                     <p><?php the_date(); ?></p>
                     <p>Dodał(a): <?php the_author(); ?></p>
-                    <div class="comments">
-                        <?php
-                            $id = the_id();
-                            $args = array(
-                                'post_id' => $id
-                                );
-                            $comments = get_comments($args);
-                            foreach($comments as $comment) :
-                                echo($comment->comment_content);
-                                echo($comment->comment_date);
-                            	echo($comment->comment_author);
-                            endforeach;
-                        ?>
+                    <div class="commentlist">
+                    	<?php
+                    		//Gather comments for a specific page/post
+                    		$comments = get_comments(array(
+                    			'post_id' => get_the_ID(),
+                    		));
+
+                    		//Display the list of comments
+                    		wp_list_comments(array(
+                                'style' => 'div',
+                    			'reverse_top_level' => false //Show the oldest comments at the top of the list
+                    		), $comments);
+                    	?>
                     </div>
                 </figcaption>
             </figure>
