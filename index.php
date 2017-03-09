@@ -11,7 +11,7 @@
                 <figcaption class="desc">
                     <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                     <p><?php the_tags(); ?></p>
-                    <p><?php the_date(); ?></p>
+                    <p><?php the_time(get_option('date_format')); ?></p>
                     <p>Dodał(a): <?php the_author(); ?></p>
                     <div class="commentlist">
                     	<?php
@@ -34,6 +34,7 @@
                 endif;
              ?>
              <div class="popup">
+                 <i class="fa fa-spinner fa-pulse"></i>
                  <figure>
                      <nav>
                          <a class="icon-arrow-down"></a>
@@ -43,6 +44,7 @@
                  </figure>
              </div>
         </section>
+        <?php wp_pagenavi(); ?>
     </div>
 </main>
 <?php get_footer(); ?>

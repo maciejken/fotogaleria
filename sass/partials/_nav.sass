@@ -1,4 +1,5 @@
 nav.menu
+    display: none
 
     .container
         background-color: lighten(#000, 10%)
@@ -10,33 +11,55 @@ nav.menu
         width: 100%
 
     #calendar_wrap
-        font-size: 1rem
+        font-size: 1.25rem
         width: 100%
-        background-color: olive
+        background-color: lighten(#000, 35%)
         @include display(flex)
         justify-content: center
         padding: 1rem
 
-
         th, td
-            width: 2rem
+            padding: 0.5rem
             text-align: right
+            margin: 1rem
 
         caption
             padding: 0.25rem
             width: 100%
             font-family: open_sansbold, Arial, sans-serif
-            // background-color: lightblue
             font-weight: bold
-    ul
+
+        #prev, #next
+            text-align: center
+
+    ul.menu
         @include display(flex)
-        // flex-direction: column
+        flex-direction: column
         justify-content: space-between
         align-items: center
         width: 100%
-        height: 3rem
         justify-content: space-around
-        font-size: 1rem
+        font-size: 1.25rem
 
         li
-            padding: 0.5rem 1rem
+            width: 100%
+
+            &:nth-child(2n)
+                background-color: lighten(#000, 20%)
+
+            &:nth-child(2n+1)
+                background-color: lighten(#000, 15%)
+
+        a
+            padding: 1rem
+            display: block
+            width: 100%
+            text-align: center
+
+@media screen and (min-width: $mobile)
+    nav.menu
+        ul.menu
+            flex-direction: row
+
+            li:nth-child(n)
+                background-color: lighten(#000, 20%)

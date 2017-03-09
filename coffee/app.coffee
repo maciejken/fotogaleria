@@ -5,11 +5,17 @@ $ ->
     header = $('header')
     menuBtn = header.find 'a'
     navMenu = $('nav.menu')
-    navMenu.hide()
+    navMenuOpen = false
     menuBtn.on 'click', ->
         navMenu.slideToggle 500
-        $(@).toggleClass('icon-arrow-up')
-        $(@).toggleClass('icon-arrow-down')
+        if navMenuOpen
+            $(@).toggleClass('icon-arrow-up')
+            $(@).toggleClass('icon-arrow-down')
+            navMenuOpen = true
+        else
+            $(@).toggleClass('icon-arrow-up')
+            $(@).toggleClass('icon-arrow-down')
+            navMenuOpen = false
 
     figures = $('figure.post')
 
@@ -97,7 +103,6 @@ $ ->
             popupFig.css
                 width: figWidth
             caption.outerWidth(figWidth)
-            console.log caption.outerWidth()
                 # poprawka responsywności: szerokość obrazka
 
         popup.on 'click', ->

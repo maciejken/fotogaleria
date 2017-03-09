@@ -3,6 +3,12 @@ main
     // position: relative
     // żeby tło stało w miejscu (main::after)
 
+    .container
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+
     section, .popup, .fullscreen
         @include display(flex)
         flex-wrap: wrap
@@ -16,12 +22,9 @@ main
 
     h2
         color: #fff
-        // margin: 1rem
-        // width: 100%
-        // text-align: center
-        display: inline-block
         font-size: 1.25rem
-        font-weight: bold
+        font-family: open_sansregular, Arial, sans-serif
+        margin: 0.5rem 0
 
     figure.post
         width: 50vw
@@ -94,20 +97,10 @@ main
                 margin: 0.5rem 0
 
             a
-                color: #444
+                color: #555
 
                 &:hover
                     color: #000
-
-            // a
-            //     display: inline-block
-            //     background-color: lighten(#000, 40%)
-            //     border-radius: 0.5rem
-            //     padding: 0.75rem 1rem
-            //     color: #fff
-
-                &:hover
-                    background-color: lighten(#000, 10%)
 
     .fullscreen
         @include display(flex)
@@ -139,6 +132,24 @@ main
 
         input[type=submit]
             width: 5rem
+
+    .container > .wp-pagenavi
+        @include display(flex)
+        flex-direction: row
+        flex-wrap: wrap
+        justify-content: center
+        align-items: center
+        font-size: 1.5rem
+        width: 100%
+
+        .pages, .current
+            color: darken(#fff, 40%)
+
+        .pages
+            display: none
+
+        a, .current
+            padding: 0.5rem
 
 
 
@@ -204,3 +215,12 @@ main
                 @include display(flex)
                 justify-content: center
                 align-items: center
+
+        .container > .wp-pagenavi
+
+            .pages
+                @include display(flex)
+                justify-content: center
+                width: 100%
+                font-size: 1rem
+                margin: 1rem 0 0 0
