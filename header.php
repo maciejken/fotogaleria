@@ -13,7 +13,7 @@
 <body>
     <header>
         <div class="container">
-            <h1><a href="http://maciejken.pl">Fotogaleria</a><i class="fa"></i></h1>
+            <h1><a href="http://maciejken.pl">Fotogaleria</a></h1>
             <a class="icon-arrow-down"></a>
         </div>
     </header>

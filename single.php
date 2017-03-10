@@ -8,13 +8,12 @@
         ?>
         <section class="content">
             <h2><?php the_title(); ?></h2>
-            <span><?php the_time(get_option('date_format')); ?></span>
+            <p class="date"><?php the_time(get_option('date_format')); ?></p>
             <div class="desc">
                 <figure>
                     <?php the_content(); ?>
                     <figcaption>
                         <p><?php the_tags(); ?></p>
-                        <p><?php the_time(get_option('date_format')); ?></p>
                         <p>Dodał(a): <?php the_author(); ?></p>
                     </figcaption>
                 </figure>

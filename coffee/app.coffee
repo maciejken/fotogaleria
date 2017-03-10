@@ -3,13 +3,6 @@ $ ->
     # show/hide nav menu bar
     body = $('body')
     header = $('header')
-    title = header.find 'h1'
-    title.on 'mouseover', ->
-        $(@).find 'i.fa'
-        .addClass 'fa-home'
-    title.on 'mouseout', ->
-        $(@).find 'i.fa'
-        .removeClass 'fa-home'
     menuBtn = header.find '.icon-arrow-down'
     navMenu = $('nav.menu')
     navMenuOpen = false
