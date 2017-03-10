@@ -20,7 +20,15 @@ footer
 
         .tagcloud
             width: 85%
-            margin: 1rem
+            margin: 1rem 0
+
+            a
+                padding: 0.25em
+
+                &:hover
+                    color: #000
+                    background-color: darken(#fff, 25%)
+
 
     ul
         @include display(flex)
@@ -45,12 +53,16 @@ footer
             width: 100%
             text-align: center
 
+            &:hover
+                color: lighten(#000, 10%)
+                background-color: darken(#fff, 25%)
+
     #menu-social-media, .menu-social-media-container
         flex-direction: row
         width: 100%
 
         li
-            background-color: lighten(#000, 10%)
+             background-color: lighten(#000, 10%)
 
 @media screen and (min-width: $mobile)
     footer

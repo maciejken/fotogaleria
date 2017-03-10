@@ -23,7 +23,8 @@
                     		//Display the list of comments
                     		wp_list_comments(array(
                                 'style' => 'div',
-                    			'reverse_top_level' => false //Show the oldest comments at the top of the list
+                    			'reverse_top_level' => false
+                                //Show the oldest comments at the top of the list
                     		), $comments);
                     	?>
                     </div>

@@ -3,7 +3,14 @@ $ ->
     # show/hide nav menu bar
     body = $('body')
     header = $('header')
-    menuBtn = header.find 'a'
+    title = header.find 'h1'
+    title.on 'mouseover', ->
+        $(@).find 'i.fa'
+        .addClass 'fa-home'
+    title.on 'mouseout', ->
+        $(@).find 'i.fa'
+        .removeClass 'fa-home'
+    menuBtn = header.find '.icon-arrow-down'
     navMenu = $('nav.menu')
     navMenuOpen = false
     menuBtn.on 'click', ->
@@ -70,7 +77,7 @@ $ ->
         minHeight = Math.min(popupImg.outerHeight(), figHeight)
         popupFig.animate
             top: window.innerHeight/2 - minHeight/2
-            left: window.innerWidth/2 - minWidth/2 - 10
+            left: window.innerWidth/2 - minWidth/2
             width: minWidth
             height: minHeight
             500
