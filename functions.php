@@ -34,3 +34,5 @@ function add_sidebar() {
 }
 
 add_action('widgets_init', 'add_sidebar');
+
+set_post_thumbnail_size( 500, 500 ); // 500 pixels wide by 500 pixels tall, box resize mode
