@@ -1,5 +1,5 @@
 main
-    background-color: lighten(black, 10%)
+    background-color: lighten($body-bgc, 20%)
     // position: relative
     // żeby tło stało w miejscu (main::after)
 
@@ -14,14 +14,15 @@ main
         flex-wrap: wrap
 
     section
-        background-color: lighten(black, 20%)
+        color: lighten($body-bgc, 20%)
+        background-color: darken($body-color, 10%)
         width: 100%
         justify-content: space-between
         align-items: center
 
     .content
         flex-direction: column
-        color: darken(#fff, 20%)
+        color: darken($body-color, 20%)
         font-size: 1.25rem
 
         figure
@@ -45,7 +46,7 @@ main
 
 
     h2
-        color: #fff
+        color: lighten($body-bgc, 20%)
         font-size: 1.5rem
         font-family: open_sansregular, Arial, sans-serif
         margin: 0.5rem 0
@@ -84,10 +85,10 @@ main
 
         a[class*=icon], a.fa
             font-size: 1.5rem
-            color: lighten(#000, 40%)
+            color: lighten($body-bgc, 40%)
 
             &:hover
-                color: lighten(#000, 10%)
+                color: lighten($body-bgc, 10%)
 
         nav
             @include display(flex)
@@ -124,7 +125,7 @@ main
                 color: #555
 
                 &:hover
-                    color: #000
+                    color: $body-bgc
 
     .fullscreen
         @include display(flex)
@@ -140,7 +141,7 @@ main
 
     .page
         flex-direction: column
-        color: #fff
+        color: lighten($body-bgc, 20%)
         font-size: 1.25rem
         padding: 1rem
 
@@ -159,17 +160,18 @@ main
         textarea
             resize: none
 
-        input[type=submit]
+        input[type=submit].wpcf7-submit
             padding: 0.75rem
-            color: #fff
+            color: $body-color
             font-family: open_sanslight
-            background-color: lighten(#000, 15%)
-            border: none
+            background-color: lighten($body-bgc, 25%)
+            border: 1px solid lighten($body-bgc, 20%)
             margin: 0.5rem 0
+            box-sizing: border-box
 
             &:hover
-                color: #000
-                background-color: darken(#fff, 20%)
+                color: lighten($body-bgc, 20%)
+                background-color: darken($body-color, 10%)
 
         .wpcf7-form-control-wrap
             @include display(flex)
@@ -189,17 +191,20 @@ main
         width: 100%
 
         .pages, .current
-            color: darken(#fff, 40%)
+            color: darken($body-color, 40%)
 
         .pages
             display: none
+
+        a.page
+            color: darken($body-color, 10%)
 
         a, .current
             padding: 0.5rem
 
         a:hover
-            color: #000
-            background-color: darken(#fff, 20%)
+            color: $body-bgc
+            background-color: darken($body-color, 20%)
 
 
 @media screen and (min-width: $mobile)
@@ -234,7 +239,7 @@ main
                 @include display(flex)
                 overflow: hidden
                 align-items: flex-start
-                // background-color: #fff
+                // background-color: $body-color
 
             img
                 max-width: none

@@ -2,7 +2,7 @@ nav.menu
     display: none
 
     .container
-        background-color: lighten(#000, 10%)
+        background-color: lighten($body-bgc, 20%)
         flex-direction: column
         align-items: center
         justify-content: space-between
@@ -13,7 +13,7 @@ nav.menu
     #calendar_wrap
         font-size: 1.25rem
         width: 100%
-        background-color: lighten(#000, 35%)
+        background-color: darken($body-color, 10%)
         @include display(flex)
         justify-content: center
         padding: 1rem
@@ -24,8 +24,25 @@ nav.menu
             margin: 1rem
 
         td
-            a
-                font-family: open_sansregular
+            a[aria-label]
+                display: inline-block
+                font-family: open_sansbold
+                color: lighten($body-bgc, 20%)
+                position: relative
+                z-index: 1
+
+                // &:hover
+                //     color: $body-color
+
+                // &:hover:before
+                //     content: ''
+                //     position: absolute
+                //     top: -0.45rem
+                //     left: -0.45rem
+                //     width: 2.5rem
+                //     height: 2.5rem
+                //     background-color: lighten($body-bgc, 20%)
+                //     z-index: -1
 
         caption
             padding: 0.25rem
@@ -51,10 +68,10 @@ nav.menu
             width: 100%
 
             &:nth-child(2n)
-                background-color: lighten(#000, 20%)
+                background-color: lighten($body-bgc, 20%)
 
             &:nth-child(2n+1)
-                background-color: lighten(#000, 15%)
+                background-color: lighten($body-bgc, 15%)
 
         a
             padding: 1rem
@@ -63,7 +80,8 @@ nav.menu
             text-align: center
 
             &:hover
-                background-color: lighten(#000, 25%)
+                color: darken($body-bgc, 20%)
+                background-color: darken($body-color, 10%)
 
 @media screen and (min-width: $mobile)
     nav.menu
@@ -71,4 +89,4 @@ nav.menu
             flex-direction: row
 
             li:nth-child(n)
-                background-color: lighten(#000, 20%)
+                background-color: lighten($body-bgc, 20%)

@@ -1,6 +1,6 @@
 footer
     color: white
-    background-color: lighten(black, 10%)
+    background-color: lighten($body-bgc, 20%)
     justify-content: center
     align-items: center
     font-size: 1.25rem
@@ -26,8 +26,8 @@ footer
                 padding: 0.25em
 
                 &:hover
-                    color: #000
-                    background-color: darken(#fff, 25%)
+                    color: lighten($body-bgc, 20%)
+                    background-color: darken($body-color, 10%)
 
 
     ul
@@ -42,10 +42,10 @@ footer
             width: 100%
 
             &:nth-child(2n)
-                background-color: lighten(#000, 20%)
+                background-color: lighten($body-bgc, 25%)
 
             &:nth-child(2n+1)
-                background-color: lighten(#000, 15%)
+                background-color: lighten($body-bgc, 15%)
 
         a
             padding: 1rem
@@ -54,15 +54,15 @@ footer
             text-align: center
 
             &:hover
-                color: lighten(#000, 10%)
-                background-color: darken(#fff, 25%)
+                color: lighten($body-bgc, 20%)
+                background-color: darken($body-color, 10%)
 
     #menu-social-media, .menu-social-media-container
         flex-direction: row
         width: 100%
 
         li
-             background-color: lighten(#000, 10%)
+             background-color: lighten($body-bgc, 20%)
 
 @media screen and (min-width: $mobile)
     footer
@@ -87,7 +87,7 @@ footer
 
         ul
             li:nth-child(n)
-                background-color: lighten(#000, 10%)
+                background-color: lighten($body-bgc, 20%)
 
             a
                 padding: 0.5rem 1rem

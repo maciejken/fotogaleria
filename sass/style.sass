@@ -8,13 +8,16 @@
 $mobile: 500px
 $tablet: 1000px
 
+// colors
+$body-color: #fff
+$body-bgc: #000
 
 html
     font-size: 4vw
     font-family: 'open_sanslight', Arial, sans-serif
 
     body
-        background-color: lighten(#000, 10%)
+        background-color: lighten($body-bgc, 20%)
 
 header, nav, main, footer
     @include display(flex)
@@ -25,7 +28,7 @@ header, nav, main, footer
         width: 100%
 
 a, a[class*=icon]
-    color: #fff
+    color: $body-color
     text-decoration: none
     cursor: pointer
 

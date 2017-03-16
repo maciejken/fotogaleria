@@ -1,7 +1,7 @@
 
 header
-    background-color: lighten(black, 10%)
-    color: #fff
+    background-color: lighten($body-bgc, 20%)
+    color: $body-color
     justify-content: space-around
 
     .container
@@ -11,14 +11,20 @@ header
 
     h1
         font-family: open_sansregular, Arial, sans-serif
-        color: #fff
-        padding: 0.25rem 0.5rem 0.5rem
+        color: $body-color
+        padding: 0.25rem 0.5rem 0.5rem 0
 
-    h1, a[class*=icon]
+    h1, a[class*=icon], a[href]
         font-size: 2rem
 
+    a[href]
+        padding: 0.25rem 0.5rem 0.5rem
+
+    a[class*=icon], a[href]
+
         &:hover
-            background-color: lighten(#000, 20%)
+            color: lighten($body-bgc, 20%)
+            background-color: darken($body-color, 10%)
 
     a[class*=icon]
         padding: 0.85rem 1rem 0.65rem
