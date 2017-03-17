@@ -56,12 +56,19 @@ main
         height: 50vw
         overflow: hidden
         cursor: pointer
-
+        
+        .loader
+            display: block
+            height: 100%
+            @include display(flex)
+            justify-content: center
+            align-items: center
         img
+            display: none
             position: relative
             top: -20px
             left: -20px
-            width: 220%
+            // width: 220%
             max-width: none
             height: auto
             filter: grayscale(75%)

@@ -5,19 +5,35 @@ $ ->
     header = $('header')
     menuBtn = header.find '.icon-arrow-down'
     navMenu = $('nav.menu')
-    navMenuOpen = false
-    menuBtn.on 'click', ->
-        navMenu.slideToggle 500
-        if navMenuOpen
-            $(@).toggleClass('icon-arrow-up')
-            $(@).toggleClass('icon-arrow-down')
-            navMenuOpen = true
-        else
-            $(@).toggleClass('icon-arrow-up')
-            $(@).toggleClass('icon-arrow-down')
-            navMenuOpen = false
 
+    menuBtn.on 'click', ->
+        navMenu.slideToggle 500, =>
+            if navMenu.is(':visible')
+                $(@).toggleClass('icon-arrow-up')
+                $(@).toggleClass('icon-arrow-down')
+            else
+                $(@).toggleClass('icon-arrow-up')
+                $(@).toggleClass('icon-arrow-down')
+    
     figures = $('figure.post')
+    loaders = figures.find '.loader'
+    # images = figures.find 'img'
+    images = document.querySelectorAll 'figure.post > img'
+    showImg = (image) ->
+        image.parentElement.firstElementChild.style.display = 'none'
+        image.style.display = 'inline'
+
+    showImg(image) for image in images
+
+    # body.on 'load', ->
+    #     figures = $('figure.post')
+    #     loaders = figures.find '.loader'
+    #     images = figures.find 'img'
+
+    # images.on 'load', ->
+    #     $(@).prev().hide()
+    #     $(@).fadeIn 500
+
 
     # move image on mousemove
     figures.on 'mousemove', (e) ->

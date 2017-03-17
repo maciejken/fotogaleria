@@ -7,11 +7,14 @@
                     while(have_posts()): the_post();
             ?>
             <figure class="post">
+                <div class="loader">
+                    <i class="fa fa-circle-o-notch fa-2x fa-spin"></i>
+                </div>
                 <?php the_post_thumbnail(); ?>
                 <figcaption class="desc">
                     <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                    <p><?php the_tags(); ?></p>
                     <p><?php the_time(get_option('date_format')); ?></p>
+                    <p><?php the_tags(); ?></p>
                     <p>Dodał(a): <?php the_author(); ?></p>
                     <div class="commentlist">
                     	<?php
@@ -35,7 +38,7 @@
                 endif;
              ?>
              <div class="popup">
-                 <i class="fa fa-spinner fa-pulse"></i>
+                 <!-- <i class="fa fa-spinner fa-pulse"></i> -->
                  <figure>
                      <nav>
                          <a class="icon-arrow-down"></a>
