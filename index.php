@@ -7,8 +7,8 @@
                     while(have_posts()): the_post();
             ?>
             <figure class="post">
-                <div class="loader">
-                    <i class="fa fa-circle-o-notch fa-2x fa-spin"></i>
+                <div class="loader_inside">
+                    <div class="loader"></div>
                 </div>
                 <?php the_post_thumbnail(); ?>
                 <figcaption class="desc">

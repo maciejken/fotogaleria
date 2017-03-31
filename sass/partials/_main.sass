@@ -22,7 +22,7 @@ main
 
     .content
         flex-direction: column
-        color: darken($body-color, 20%)
+        color: lighten($body-bgc, 20%)
         font-size: 1.25rem
 
         figure
@@ -38,6 +38,13 @@ main
 
         .date
             margin: 0 0 1rem
+
+        a[rel="tag"]
+            color: lighten($body-bgc, 20%)
+            font-family: open_sansregular
+
+            &:hover
+                text-decoration: underline
 
         .yarpp-related
             display: inline-block
@@ -57,12 +64,27 @@ main
         overflow: hidden
         cursor: pointer
         
-        .loader
+        .loader_inside
             display: block
             height: 100%
             @include display(flex)
             justify-content: center
             align-items: center
+
+        .loader
+            border: 0.25rem solid darken($body-color, 25%)
+            border-top: 0.25rem solid lighten($body-bgc, 50%)
+            border-radius: 50%
+            width: 2.5rem
+            height: 2.5rem
+            animation: spin 2s linear infinite
+
+        @keyframes spin
+            from
+                transform: rotate(0deg)
+            to
+                transform: rotate(360deg)
+
         img
             display: none
             position: relative
