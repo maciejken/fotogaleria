@@ -63,7 +63,7 @@ main
         height: 50vw
         overflow: hidden
         cursor: pointer
-        
+
         .loader_inside
             display: block
             height: 100%
@@ -72,8 +72,8 @@ main
             align-items: center
 
         .loader
-            border: 0.25rem solid darken($body-color, 25%)
-            border-top: 0.25rem solid lighten($body-bgc, 50%)
+            border: 2px solid lighten($body-bgc, 15%)
+            border-top: 2px solid transparent
             border-radius: 50%
             width: 2.5rem
             height: 2.5rem
@@ -98,8 +98,8 @@ main
             &:hover
                 filter: grayscale(0)
 
-        figcaption.desc
-            display: none
+        // figcaption.desc
+        //     display: none
 
     .popup
         display: none
@@ -112,15 +112,23 @@ main
             overflow: hidden
             align-items: flex-start
 
+            &:hover
+                nav, figcaption
+                    opacity: 1
+
+
+
         a[class*=icon], a.fa
             font-size: 1.5rem
             color: lighten($body-bgc, 40%)
+            transition: 0.25s
 
             &:hover
                 color: lighten($body-bgc, 10%)
 
         nav
-            @include display(flex)
+            // @include display(flex)
+            display: none
             padding: 0.5rem
             background-color: rgba(255,255,255,.75)
             justify-content: space-between
@@ -128,6 +136,8 @@ main
             position: absolute
             top: 0
             width: 100%
+            opacity: 0
+            transition: 0.5s
 
         img
             opacity: 0
@@ -135,17 +145,19 @@ main
             max-width: none
 
         figcaption.desc
-            padding: 1rem
-            display: none
+            display: flex
             position: absolute
             top: 0
             left: 0
             background-color: rgba(255,255,255,0.75)
-            height: 100%
             width: 100%
-            overflow: scroll
+            height: 0
+            overflow: auto
             flex-direction: column
             align-items: center
+            opacity: 0
+            padding: 0 1rem
+            transition: opacity 0.5s
 
             p
                 margin: 0.5rem 0

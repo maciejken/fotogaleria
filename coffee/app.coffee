@@ -14,7 +14,7 @@ $ ->
             else
                 $(@).toggleClass('icon-arrow-up')
                 $(@).toggleClass('icon-arrow-down')
-    
+
     figures = $('figure.post')
     loaders = figures.find '.loader'
     # images = figures.find 'img'
@@ -101,14 +101,14 @@ $ ->
                     top: 'auto'
                     left: 'auto'
                     height: 'auto'
-                popupImgCSS =
-                    width: '100%'
+
                 popupFig.css initFigCSS
-                popupImg.css popupImgCSS
+                popupImg.css 'width', '100%'
                 popupFig.animate
                     width: figWidth
                     500
                     ->
+                        popupNav.css 'display', 'flex'
                         popupFig.css
                             position: 'relative'
                             # żeby górny pasek i opis były we właściwym miejscu
@@ -122,26 +122,24 @@ $ ->
                 # poprawka responsywności: szerokość obrazka
 
         popup.on 'click', ->
-            $(@).removeClass('fullscreen')
+            $(@).removeClass 'fullscreen'
             caption.hide()
-            $(@).css('opacity', 0)
+            $(@).css 'opacity', 0
             $(@).find('figcaption').remove()
-            initImgCSS =
-                opacity: 0
-            popupImg.css initImgCSS
+
             popupFig.css 'position', 'absolute'
             popupImg.attr 'src', ''
             showBtn.removeClass 'icon-arrow-up'
-            popupNav.hide()
+            popupNav.css 'display', 'none'
 
     popup = $('.popup')
 
     popupFig = popup.find 'figure'
     popupImg = popup.find 'img'
     popupNav = popup.find 'nav'
-    popupNav.hide()
-    popupNav.on 'click', ->
-        false
+
+    popupNav.on 'click', (e) ->
+        e.stopImmediatePropagation()
     closeBtn = popupNav.find '.icon-close'
     showBtn = popupNav.find '.icon-arrow-down'
 
@@ -150,13 +148,22 @@ $ ->
         popup.click()
 
     # toggle caption visibility
-    showBtn.on 'click', ->
+    showBtn.on 'click', (e) ->
         caption = popup.find 'figcaption'
         imgHeight = popupImg.outerHeight()
         navHeight = $(@).parent().outerHeight()
-        caption.outerHeight(imgHeight - navHeight)
-        caption.css('top', navHeight)
-        caption.slideToggle 500
+        # caption.outerHeight(imgHeight - navHeight)
+        caption.toggleClass 'active'
+        if caption.hasClass 'active'
+            caption.css
+                top: navHeight
+            caption.animate
+                height: imgHeight - navHeight
+                500
+        else
+            caption.animate
+                height: 0
+                500
         $(@).toggleClass('icon-arrow-up')
 
         caption.on 'click', (e) ->
@@ -169,7 +176,5 @@ $ ->
             caption.css('top', navHeight)
             # poprawka responsywności dla górnej belki i opisu
 
-
     popupImg.on 'click', (e) ->
-        popupNav.fadeToggle 500
         e.stopImmediatePropagation()

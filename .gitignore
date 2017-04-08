@@ -4,3 +4,4 @@ gulpfile
 lib
 package.json
 images
+*.map
