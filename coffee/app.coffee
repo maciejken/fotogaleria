@@ -1,10 +1,29 @@
 $ ->
+    Libr = (element) ->
+        @element = element
+
+    Libr.prototype =
+        foo: () ->
+            console.log @element
+
+    Object.defineProperty Element.prototype, 'libr',
+        get: () ->
+            Object.defineProperty @, 'libr',
+                value: new Libr @
+
+            @libr
+
+        configurable: true
+        writeable: false
+
 
     # show/hide nav menu bar
-    body = $('body')
+    body = document.querySelector 'body'
+    body.libr.foo()
     header = $('header')
     menuBtn = header.find '.icon-arrow-down'
     navMenu = $('nav.menu')
+
 
     menuBtn.on 'click', ->
         navMenu.slideToggle 500, =>
@@ -54,9 +73,9 @@ $ ->
         popup.addClass('fullscreen')
         popupFig.append caption.clone()
         popupImg.attr('src', img.attr('src'))
-        popup.animate
+        popup.css
             opacity: 1
-            500
+            transition: 'opacity 1s'
         popupFig.css
             top: offset.top
             left: offset.left
@@ -84,12 +103,12 @@ $ ->
         # animacja przesuwania i powiększania klikniętego obrazka
         minWidth = Math.min(popupImg.outerWidth(), figWidth)
         minHeight = Math.min(popupImg.outerHeight(), figHeight)
-        popupFig.animate
+        popupFig.css
             top: window.innerHeight/2 - minHeight/2
             left: window.innerWidth/2 - minWidth/2
             width: minWidth
             height: minHeight
-            500
+            transition: 'top 0.5s, left 0.5s, width 0.5s, height 0.5s'
         popupImg.animate
             margin: 0
             width: minWidth
@@ -124,7 +143,8 @@ $ ->
         popup.on 'click', ->
             $(@).removeClass 'fullscreen'
             caption.hide()
-            $(@).css 'opacity', 0
+            $(@).css
+                opacity: 0
             $(@).find('figcaption').remove()
 
             popupFig.css 'position', 'absolute'
@@ -152,18 +172,18 @@ $ ->
         caption = popup.find 'figcaption'
         imgHeight = popupImg.outerHeight()
         navHeight = $(@).parent().outerHeight()
-        # caption.outerHeight(imgHeight - navHeight)
-        caption.toggleClass 'active'
-        if caption.hasClass 'active'
+
+        caption.toggleClass 'inactive'
+        if caption.hasClass 'inactive'
             caption.css
                 top: navHeight
-            caption.animate
                 height: imgHeight - navHeight
-                500
+                transition: 'height 0.5s, opacity 0.5s'
+
         else
-            caption.animate
+            caption.css
                 height: 0
-                500
+
         $(@).toggleClass('icon-arrow-up')
 
         caption.on 'click', (e) ->

@@ -14,7 +14,7 @@
     <header>
         <div class="container">
             <h1><a href="http://maciejken.pl">Fotogaleria</a></h1>
-            <a class="icon-arrow-down"></a>
+            <a class="icon-arrow-down" id="menu-toggle"></a>
         </div>
     </header>
     <nav class="menu">

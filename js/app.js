@@ -1,44 +1,91 @@
 $(function() {
-  var body, closeBtn, figures, header, i, image, images, len, loaders, menuBtn, navMenu, popup, popupFig, popupImg, popupNav, showBtn, showImg;
-  body = $('body');
-  header = $('header');
-  menuBtn = header.find('.icon-arrow-down');
-  navMenu = $('nav.menu');
-  menuBtn.on('click', function() {
-    return navMenu.slideToggle(500, (function(_this) {
-      return function() {
-        if (navMenu.is(':visible')) {
-          $(_this).toggleClass('icon-arrow-up');
-          return $(_this).toggleClass('icon-arrow-down');
-        } else {
-          $(_this).toggleClass('icon-arrow-up');
-          return $(_this).toggleClass('icon-arrow-down');
+    var Libr, body, closeBtn, figures, header, i, image, images, len, loaders, menuBtn, navMenu, popup, popupFig, popupImg, popupNav, showBtn, showImg;
+
+    Libr = function(element) {
+        this.element = element;
+    };
+
+    Libr.prototype = {
+        log: function() {
+            console.log(this.element);
+        },
+        css: function(styles) {
+            var style, value;
+            for (style in styles) {
+                value = styles[style];
+                this.element.style[style] = value;
+            }
+        },
+        mmv: function(figure) {
+            figure.addEventListener('mousemove', function(e) {
+                var img, x, y;
+                img = figure.querySelector('img');
+                x = -(e.pageX - figure.offsetLeft) / 20;
+                y = -(e.pageY - figure.offsetTop) / 20;
+                img.libr.css({
+                    left: x + 'px',
+                    top: y + 'px'
+                });
+            });
         }
-      };
-    })(this));
-  });
-  figures = $('figure.post');
-  loaders = figures.find('.loader');
-  images = document.querySelectorAll('figure.post > img');
-  showImg = function(image) {
-    image.parentElement.firstElementChild.style.display = 'none';
-    return image.style.display = 'inline';
-  };
-  for (i = 0, len = images.length; i < len; i++) {
-    image = images[i];
-    showImg(image);
-  }
-  figures.on('mousemove', function(e) {
-    var img, offset, x, y;
-    offset = $(this).offset();
-    x = -(e.pageX - offset.left) / 20;
-    y = -(e.pageY - offset.top) / 20;
-    img = $(this).find('img');
-    return img.css({
-      left: x + 'px',
-      top: y + 'px'
+    };
+
+    Object.defineProperty(Element.prototype, 'libr', {
+        get: function() {
+            Object.defineProperty(this, 'libr', {
+                value: new Libr(this)
+            });
+            return this.libr;
+        },
+        configurable: true,
+        writeable: false
     });
-  });
+
+    menuBtn = document.querySelector('#menu-toggle');
+    navMenu = document.querySelector('nav.menu');
+    menuBtn.addEventListener('click', function() {
+
+        var stylesOn = {
+            height: '26rem',
+            transition: '0.5s'
+        };
+
+        var stylesOff = {
+            height: '0rem',
+            transition: '0.25s'
+        };
+
+        var isOpen = parseFloat(navMenu.style.height)? true : false;
+
+        if (isOpen) {
+            navMenu.libr.css(stylesOff);
+            this.classList.toggle('icon-arrow-up');
+            this.classList.toggle('icon-arrow-down');
+        } else {
+            navMenu.libr.css(stylesOn);
+            this.classList.toggle('icon-arrow-up');
+            this.classList.toggle('icon-arrow-down');
+        }
+    });
+
+    figures = document.querySelectorAll('figure.post');
+    images = document.querySelectorAll('figure.post > img');
+    showImg = function(image) {
+        image.parentElement.firstElementChild.style.display = 'none';
+        image.style.display = 'inline';
+    };
+
+    for (i = 0, len = images.length; i < len; i++) {
+        image = images[i];
+        showImg(image);
+    }
+
+    figures.forEach(function(figure) {
+        figure.libr.mmv(figure);
+    });
+
+// ------------------------------------
+
   figures.on('click', function() {
     var caption, figHeight, figWidth, img, imgRatio, minHeight, minWidth, offset, winHeight, winRatio, winWidth;
     img = $(this).find('img');
@@ -47,9 +94,10 @@ $(function() {
     popup.addClass('fullscreen');
     popupFig.append(caption.clone());
     popupImg.attr('src', img.attr('src'));
-    popup.animate({
-      opacity: 1
-    }, 500);
+    popup.css({
+      opacity: 1,
+      transition: 'opacity 1s'
+    });
     popupFig.css({
       top: offset.top,
       left: offset.left,
@@ -73,12 +121,13 @@ $(function() {
     figHeight = figWidth * imgRatio;
     minWidth = Math.min(popupImg.outerWidth(), figWidth);
     minHeight = Math.min(popupImg.outerHeight(), figHeight);
-    popupFig.animate({
+    popupFig.css({
       top: window.innerHeight / 2 - minHeight / 2,
       left: window.innerWidth / 2 - minWidth / 2,
       width: minWidth,
-      height: minHeight
-    }, 500);
+      height: minHeight,
+      transition: 'top 0.5s, left 0.5s, width 0.5s, height 0.5s'
+    });
     popupImg.animate({
       margin: 0,
       width: minWidth
@@ -112,7 +161,9 @@ $(function() {
     return popup.on('click', function() {
       $(this).removeClass('fullscreen');
       caption.hide();
-      $(this).css('opacity', 0);
+      $(this).css({
+        opacity: 0
+      });
       $(this).find('figcaption').remove();
       popupFig.css('position', 'absolute');
       popupImg.attr('src', '');
@@ -137,18 +188,17 @@ $(function() {
     caption = popup.find('figcaption');
     imgHeight = popupImg.outerHeight();
     navHeight = $(this).parent().outerHeight();
-    caption.toggleClass('active');
-    if (caption.hasClass('active')) {
+    caption.toggleClass('inactive');
+    if (caption.hasClass('inactive')) {
       caption.css({
-        top: navHeight
+        top: navHeight,
+        height: imgHeight - navHeight,
+        transition: 'height 0.5s, opacity 0.5s'
       });
-      caption.animate({
-        height: imgHeight - navHeight
-      }, 500);
     } else {
-      caption.animate({
+      caption.css({
         height: 0
-      }, 500);
+      });
     }
     $(this).toggleClass('icon-arrow-up');
     caption.on('click', function(e) {
@@ -165,5 +215,3 @@ $(function() {
     return e.stopImmediatePropagation();
   });
 });
-
-//# sourceMappingURL=app.js.map

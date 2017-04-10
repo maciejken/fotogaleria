@@ -38,7 +38,6 @@
                 endif;
              ?>
              <div class="popup">
-                 <!-- <i class="fa fa-spinner fa-pulse"></i> -->
                  <figure>
                      <nav>
                          <a class="icon-arrow-down"></a>
